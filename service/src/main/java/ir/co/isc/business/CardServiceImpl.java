@@ -1,11 +1,16 @@
 package ir.co.isc.business;
 
+import ir.co.isc.CardTypeEnum;
 import ir.co.isc.Translator;
 import ir.co.isc.business.interfaces.CardService;
+import ir.co.isc.business.interfaces.UserService;
 import ir.co.isc.entity.CardEntity;
+import ir.co.isc.entity.UserEntity;
 import ir.co.isc.exception.CardException;
 import ir.co.isc.model.CardModel;
 import ir.co.isc.model.GetCardsResponse;
+import ir.co.isc.model.SaveCardRequest;
+import ir.co.isc.model.UserModel;
 import ir.co.isc.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +23,12 @@ public class CardServiceImpl implements CardService {
 
     private CardRepository cardRepository;
 
+    private UserService userService;
+
     @Autowired
-    public CardServiceImpl(CardRepository cardRepository) {
+    public CardServiceImpl(CardRepository cardRepository, UserService userService) {
         this.cardRepository = cardRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -43,7 +51,20 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void saveCard(CardModel cardModel) {
+    public void saveCard(SaveCardRequest saveCard) {
+        //todo checking null values
+        UserEntity user = userService.findUserByNationalCode(saveCard.getNationalCode());
+        CardEntity card = new CardEntity();
+        card.setAccountNumber(saveCard.getCard().getAccountNumber());
+        card.setExpireDate(saveCard.getCard().getExpireDate());
+        card.setCardNumber(saveCard.getCard().getCardNumber());
+        card.setCardType(CardTypeEnum.valueOf(saveCard.getCard().getCardType()));
+        card.setActive(true);
+        String issuerCode = saveCard.getCard().getCardNumber().substring(0,6);
+        card.setIssuerCode(Integer.parseInt(issuerCode));
+        card.setIssuerName(saveCard.getCard().getIssuerName());
+        card.setUser(user);
+        cardRepository.save(card);
 
     }
 }

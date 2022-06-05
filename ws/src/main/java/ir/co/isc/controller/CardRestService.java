@@ -2,9 +2,10 @@ package ir.co.isc.controller;
 
 import ir.co.isc.business.interfaces.CardService;
 import ir.co.isc.exception.CardException;
-import ir.co.isc.model.CardDefaultResponse;
+import ir.co.isc.model.DefaultResponse;
 import ir.co.isc.model.CardModel;
 import ir.co.isc.model.GetCardsResponse;
+import ir.co.isc.model.SaveCardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +24,10 @@ public class CardRestService {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<CardDefaultResponse> saveCard(@RequestBody CardModel cardModel) {
-        CardDefaultResponse response = new CardDefaultResponse();
-        cardService.saveCard(cardModel);
-        response.setMessage("the card was successfully added");
+    public ResponseEntity<DefaultResponse> saveCard(@RequestBody SaveCardRequest model) {
+        DefaultResponse response = new DefaultResponse();
+        cardService.saveCard(model);
+        response.setMessage("the card was successfully saved");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

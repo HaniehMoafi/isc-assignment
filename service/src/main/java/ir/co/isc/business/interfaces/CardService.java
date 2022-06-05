@@ -4,6 +4,7 @@ package ir.co.isc.business.interfaces;
 import ir.co.isc.exception.CardException;
 import ir.co.isc.model.CardModel;
 import ir.co.isc.model.GetCardsResponse;
+import ir.co.isc.model.SaveCardRequest;
 
 public interface CardService {
 
@@ -11,5 +12,5 @@ public interface CardService {
 
     GetCardsResponse findCardByNationalCode(String nationalCode) throws CardException;
 
-    void saveCard(CardModel cardModel);
+    void saveCard(SaveCardRequest cardModel);
 }

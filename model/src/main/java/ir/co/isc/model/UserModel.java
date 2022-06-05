@@ -1,12 +1,13 @@
 package ir.co.isc.model;
 
-public class PersonModel {
+public class UserModel {
 
     private String name;
     private String family;
     private String nationalCode;
     private String address;
-    //todo more
+    private String phoneNumber;
+
 
 
     public String getName() {
@@ -39,5 +40,13 @@ public class PersonModel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
