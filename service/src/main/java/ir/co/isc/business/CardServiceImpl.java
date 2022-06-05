@@ -70,7 +70,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void deleteCard(String cardNumber) throws CardException {
-        Optional<CardEntity> c = cardRepository.findByCardNumberAndActive(cardNumber, true);
+        Optional<CardEntity> c = cardRepository.findByCardNumberAndIsActive(cardNumber, true);
         if (!c.isPresent())
             throw new CardException(CardException.CARD_NOT_FOUND);
         CardEntity cardEntity = c.get();

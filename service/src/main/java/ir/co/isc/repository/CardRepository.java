@@ -19,5 +19,5 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
     @Query("SELECT c FROM CardEntity c WHERE c.user.nationalCode=?1 ")
     List<CardEntity> findCardByNationalCode(String nationalCode);
 
-    Optional<CardEntity> findByCardNumberAndActive(String cardNumber,boolean isActive);
+    Optional<CardEntity> findByCardNumberAndIsActive(String cardNumber,boolean isActive);
 }
