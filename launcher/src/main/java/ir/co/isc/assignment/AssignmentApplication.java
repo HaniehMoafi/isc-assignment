@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @EnableAutoConfiguration
@@ -16,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"ir.co.isc.*"})
 @EntityScan(basePackages = {"ir.co.isc.entity"})
 @EnableJpaRepositories(basePackages = {"ir.co.isc.repository"})
+@EnableScheduling
 @OpenAPIDefinition(info = @Info(title = "account api", version = "1.0", description = "api document for isc assignment"))
 public class AssignmentApplication {
 
