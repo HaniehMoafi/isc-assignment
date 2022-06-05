@@ -9,6 +9,7 @@ public class CardModel {
     private Long accountNumber;
     private String expireDate;
     private boolean isActive;
+    private String ownerNationalCode;
 
 
     public String getCardNumber() {
@@ -65,5 +66,13 @@ public class CardModel {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getOwnerNationalCode() {
+        return ownerNationalCode;
+    }
+
+    public void setOwnerNationalCode(String ownerNationalCode) {
+        this.ownerNationalCode = ownerNationalCode;
     }
 }
