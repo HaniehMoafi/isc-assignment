@@ -2,8 +2,8 @@ package ir.co.isc.controller;
 
 import ir.co.isc.business.interfaces.CardService;
 import ir.co.isc.exception.CardException;
-import ir.co.isc.model.DefaultResponse;
 import ir.co.isc.model.CardModel;
+import ir.co.isc.model.DefaultResponse;
 import ir.co.isc.model.GetCardsResponse;
 import ir.co.isc.model.SaveCardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +42,15 @@ public class CardRestService {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
+
+    @DeleteMapping("/delete/{cardNumber}")
+    public ResponseEntity<DefaultResponse> deleteCard(@PathVariable String cardNumber) throws CardException {
+        DefaultResponse response = new DefaultResponse();
+        cardService.deleteCard(cardNumber);
+        response.setMessage("the card was successfully removed");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+    }
+
+
 }

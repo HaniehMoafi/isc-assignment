@@ -10,13 +10,13 @@ import ir.co.isc.exception.CardException;
 import ir.co.isc.model.CardModel;
 import ir.co.isc.model.GetCardsResponse;
 import ir.co.isc.model.SaveCardRequest;
-import ir.co.isc.model.UserModel;
 import ir.co.isc.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -60,11 +60,21 @@ public class CardServiceImpl implements CardService {
         card.setCardNumber(saveCard.getCard().getCardNumber());
         card.setCardType(CardTypeEnum.valueOf(saveCard.getCard().getCardType()));
         card.setActive(true);
-        String issuerCode = saveCard.getCard().getCardNumber().substring(0,6);
+        String issuerCode = saveCard.getCard().getCardNumber().substring(0, 6);
         card.setIssuerCode(Integer.parseInt(issuerCode));
         card.setIssuerName(saveCard.getCard().getIssuerName());
         card.setUser(user);
         cardRepository.save(card);
 
+    }
+
+    @Override
+    public void deleteCard(String cardNumber) throws CardException {
+        Optional<CardEntity> c = cardRepository.findByCardNumberAndActive(cardNumber, true);
+        if (!c.isPresent())
+            throw new CardException(CardException.CARD_NOT_FOUND);
+        CardEntity cardEntity = c.get();
+        cardEntity.setActive(false);
+        cardRepository.save(cardEntity);
     }
 }

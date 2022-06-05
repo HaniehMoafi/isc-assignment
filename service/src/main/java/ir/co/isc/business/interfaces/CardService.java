@@ -13,4 +13,6 @@ public interface CardService {
     GetCardsResponse findCardByNationalCode(String nationalCode) throws CardException;
 
     void saveCard(SaveCardRequest cardModel);
+
+    void deleteCard(String cardNumber)throws CardException;
 }
