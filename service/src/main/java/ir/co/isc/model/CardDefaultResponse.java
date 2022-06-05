@@ -1,4 +1,4 @@
-package ir.co.isc.response;
+package ir.co.isc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

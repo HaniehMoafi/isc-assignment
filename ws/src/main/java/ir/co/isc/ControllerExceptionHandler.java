@@ -1,7 +1,7 @@
 package ir.co.isc;
 
 import ir.co.isc.exception.CardException;
-import ir.co.isc.response.CardDefaultResponse;
+import ir.co.isc.model.CardDefaultResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
