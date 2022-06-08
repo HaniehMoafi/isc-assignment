@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -23,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableJpaRepositories(basePackages = {"ir.co.isc.repository"})
 @EnableScheduling
 @EnableWebMvc
-@EnableWebSecurity
+//@EnableWebSecurity
 @OpenAPIDefinition(info = @Info(title = "account api", version = "1.0", description = "api document for isc assignment"))
 public class AssignmentApplication {
 

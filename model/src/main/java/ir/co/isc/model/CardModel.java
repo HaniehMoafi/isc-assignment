@@ -2,10 +2,12 @@ package ir.co.isc.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class CardModel {
 
     @NotEmpty
+    @Size(min = 16 , max = 16)
     private String cardNumber;
     private Integer issuerCode;
     @NotEmpty
@@ -15,6 +17,7 @@ public class CardModel {
     @NotNull
     private Long accountNumber;
     @NotEmpty
+    @Size(min = 5 , max = 5)
     private String expireDate;
     private boolean isActive;
 
