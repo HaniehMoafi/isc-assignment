@@ -1,9 +1,13 @@
 package ir.co.isc.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
 public class SaveCardRequest {
 
-    //    @NotEmpty(message = "national code can not be empty")
+    @NotEmpty
     private String nationalCode;
+    @Valid
     private CardModel card;
 
     public String getNationalCode() {

@@ -1,18 +1,21 @@
-/*
+
 package ir.co.isc.validation;
 
 
 import javax.validation.Constraint;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.validation.Payload;
+import java.lang.annotation.*;
 
-@Constraint(validatedBy = NotEmptyValidation.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+import static java.lang.annotation.ElementType.*;
+
+@Documented
+@Constraint(validatedBy = NotEmptyValidator.class)
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotEmpty {
+    String message() default "";
 
-    String value();
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }
-*/

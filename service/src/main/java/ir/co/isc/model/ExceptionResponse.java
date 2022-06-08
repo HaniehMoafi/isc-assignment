@@ -2,21 +2,15 @@ package ir.co.isc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class DefaultResponse {
+public class ExceptionResponse {
 
-    private String message;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date = new Date();
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    private List<String> exceptions = new ArrayList<>();
 
     public Date getDate() {
         return date;
@@ -26,5 +20,11 @@ public class DefaultResponse {
         this.date = date;
     }
 
+    public List<String> getExceptions() {
+        return exceptions;
+    }
 
+    public void setExceptions(List<String> exceptions) {
+        this.exceptions = exceptions;
+    }
 }

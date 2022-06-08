@@ -1,12 +1,20 @@
 package ir.co.isc.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class CardModel {
 
+    @NotEmpty
     private String cardNumber;
     private Integer issuerCode;
+    @NotEmpty
     private String cardType;
+    @NotEmpty
     private String issuerName;
+    @NotNull
     private Long accountNumber;
+    @NotEmpty
     private String expireDate;
     private boolean isActive;
 
