@@ -39,7 +39,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public GetCardsResponse findCardByNationalCode(String nationalCode) throws CardException {
         GetCardsResponse response = new GetCardsResponse();
-        List<CardEntity> cardEntities = cardRepository.findCardByNationalCode(nationalCode);
+        List<CardEntity> cardEntities = cardRepository.findCardByNationalCodeAndIsActive(nationalCode, true);
         if (CollectionUtils.isEmpty(cardEntities))
             throw new CardException(CardException.CARD_NOT_FOUND);
         List<CardModel> cardModels = Translator.cardEntitiesToCardModels(cardEntities);
@@ -53,7 +53,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void saveCard(SaveCardRequest saveCard) {
-        //todo checking null values
+
         UserEntity user = userService.findUserByNationalCode(saveCard.getNationalCode());
         CardEntity card = new CardEntity();
         card.setAccountNumber(saveCard.getCard().getAccountNumber());
@@ -65,7 +65,11 @@ public class CardServiceImpl implements CardService {
         card.setIssuerCode(Integer.parseInt(issuerCode));
         card.setIssuerName(saveCard.getCard().getIssuerName());
         card.setUser(user);
-        cardRepository.save(card);
+        try {
+            cardRepository.save(card);
+        } catch (Exception e) {
+            throw new CardException(CardException.DUPLICATE_CARD);
+        }
 
     }
 

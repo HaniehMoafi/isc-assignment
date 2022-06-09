@@ -19,6 +19,7 @@ public class  Translator {
         model.setExpireDate(cardEntity.getExpireDate());
         model.setIssuerCode(cardEntity.getIssuerCode());
         model.setIssuerName(cardEntity.getIssuerName());
+        model.setActive(cardEntity.isActive());
         return model;
     }
 
