@@ -15,4 +15,6 @@ public interface CardService {
     void saveCard(SaveCardRequest cardModel);
 
     void deleteCard(String cardNumber)throws CardException;
+
+    CardModel findCardByCardData(String cardData)throws CardException;
 }

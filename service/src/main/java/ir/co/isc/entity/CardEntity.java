@@ -14,7 +14,7 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CARD_NUMBER", nullable = false, length = 16)
+    @Column(name = "CARD_NUMBER", nullable = false, length = 16, unique = true)
     private String cardNumber;
 
     @Column(name = "ISSUER_CODE", nullable = false, length = 6)

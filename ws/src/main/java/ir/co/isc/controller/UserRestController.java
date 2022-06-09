@@ -16,12 +16,12 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/user")
 @Validated
-public class UserRestService {
+public class UserRestController {
 
     private UserService userService;
 
     @Autowired
-    public UserRestService(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 

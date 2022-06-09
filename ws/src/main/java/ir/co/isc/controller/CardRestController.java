@@ -20,13 +20,13 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/card")
 @Validated
-public class CardRestService {
+public class CardRestController {
 
 
     private CardService cardService;
 
     @Autowired
-    public CardRestService(CardService cardService) {
+    public CardRestController(CardService cardService) {
         this.cardService = cardService;
     }
 
@@ -41,8 +41,10 @@ public class CardRestService {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/find")
-    public void findCard(@RequestBody CardModel cardModel) {
+    @GetMapping("/findCardCardData")
+    public ResponseEntity<CardModel> findCardByCardData(@RequestParam(required = true) String cardData) {
+        CardModel model = cardService.findCardByCardData(cardData);
+        return new ResponseEntity<>(model, HttpStatus.OK);
 
     }
 

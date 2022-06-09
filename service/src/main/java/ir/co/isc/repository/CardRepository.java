@@ -20,4 +20,6 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
     List<CardEntity> findCardByNationalCodeAndIsActive(String nationalCode, boolean isActive);
 
     Optional<CardEntity> findByCardNumberAndIsActive(String cardNumber, boolean isActive);
+
+    Optional<CardEntity> findByCardNumberOrAccountNumber(String cardNumber , Long accountNumber);
 }

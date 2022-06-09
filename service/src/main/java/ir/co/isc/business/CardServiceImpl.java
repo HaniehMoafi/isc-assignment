@@ -82,4 +82,17 @@ public class CardServiceImpl implements CardService {
         cardEntity.setActive(false);
         cardRepository.save(cardEntity);
     }
+
+    @Override
+    public CardModel findCardByCardData(String cardData) throws CardException {
+        Optional<CardEntity> entity;
+        if (cardData.length() == 16) {
+            entity = cardRepository.findByCardNumberOrAccountNumber(cardData, 0L);
+        } else if (cardData.length() == 10) {
+            entity = cardRepository.findByCardNumberOrAccountNumber("", Long.valueOf(cardData));
+        } else throw new CardException(CardException.WRONG_CARD_DATA);
+        if (entity.isPresent())
+            return Translator.cardEntityToCardModel(entity.get());
+        else throw new CardException(CardException.CARD_NOT_FOUND);
+    }
 }
