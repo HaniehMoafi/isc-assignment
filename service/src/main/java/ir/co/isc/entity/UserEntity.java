@@ -13,10 +13,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME" ,nullable = false)
     private String name;
 
-    @Column(name = "FAMILY")
+    @Column(name = "FAMILY",nullable = false)
     private String family;
 
     @Column(name = "NATIONAL_CODE", nullable = false, length = 10, unique = true)

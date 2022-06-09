@@ -1,13 +1,20 @@
 package ir.co.isc.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserModel {
 
+    @NotBlank
     private String name;
+    @NotBlank
     private String family;
+    @NotBlank
+    @Size(min = 10, max = 10)
     private String nationalCode;
     private String address;
+    @NotBlank
     private String phoneNumber;
-
 
 
     public String getName() {

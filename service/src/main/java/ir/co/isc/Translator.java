@@ -4,14 +4,15 @@ import ir.co.isc.entity.CardEntity;
 import ir.co.isc.entity.UserEntity;
 import ir.co.isc.model.CardModel;
 import ir.co.isc.model.UserModel;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class  Translator {
+public class Translator {
 
 
-    public static CardModel cardEntityToCardModel(CardEntity cardEntity){
+    public static CardModel cardEntityToCardModel(CardEntity cardEntity) {
         CardModel model = new CardModel();
         model.setAccountNumber(cardEntity.getAccountNumber());
         model.setCardNumber(cardEntity.getCardNumber());
@@ -23,16 +24,16 @@ public class  Translator {
         return model;
     }
 
-    public static List<CardModel> cardEntitiesToCardModels(List<CardEntity> cardEntities){
+    public static List<CardModel> cardEntitiesToCardModels(List<CardEntity> cardEntities) {
         List<CardModel> models = new ArrayList<>();
-        for (CardEntity c :cardEntities) {
+        for (CardEntity c : cardEntities) {
             CardModel model = cardEntityToCardModel(c);
             models.add(model);
         }
         return models;
     }
 
-    public static UserModel userEntityToUserModel(UserEntity userEntity){
+    public static UserModel userEntityToUserModel(UserEntity userEntity) {
         UserModel model = new UserModel();
         model.setAddress(userEntity.getAddress());
         model.setFamily(userEntity.getFamily());
@@ -40,5 +41,15 @@ public class  Translator {
         model.setNationalCode(userEntity.getNationalCode());
         model.setPhoneNumber(userEntity.getPhoneNumber());
         return model;
+    }
+
+    public static UserEntity userModelToUserEntity(UserModel model) {
+        UserEntity entity = new UserEntity();
+        entity.setPhoneNumber(model.getPhoneNumber());
+        entity.setFamily(model.getFamily());
+        entity.setName(model.getName());
+        entity.setNationalCode(model.getNationalCode());
+        entity.setAddress(StringUtils.hasText(model.getAddress()) ? model.getAddress() : null);
+        return entity;
     }
 }

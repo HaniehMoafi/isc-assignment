@@ -25,9 +25,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity findUserByNationalCode(String nationalCode) throws UserException {
         Optional<UserEntity> u = userRepository.findByNationalCode(nationalCode);
-        if (u.isPresent()){
+        if (u.isPresent()) {
             return u.get();
-        }else throw new UserException(UserException.USER_NOT_FOUND);
+        } else throw new UserException(UserException.USER_NOT_FOUND);
 
+    }
+
+    @Override
+    public void save(UserModel userModel) throws UserException {
+        UserEntity entity = Translator.userModelToUserEntity(userModel);
+        try {
+            userRepository.save(entity);
+        } catch (Exception e) {
+            throw new UserException(UserException.DUPLICATE_USER);
+        }
+    }
+
+    @Override
+    public UserModel findUserDataByNationalCode(String nationalCode) throws UserException {
+        Optional<UserEntity> u = userRepository.findByNationalCode(nationalCode);
+        if (u.isPresent()) {
+            return Translator.userEntityToUserModel(u.get());
+        } else throw new UserException(UserException.USER_NOT_FOUND);
     }
 }

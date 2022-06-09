@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
@@ -33,7 +32,7 @@ public class CardRestService {
 
     @PostMapping("/save")
     public ResponseEntity<DefaultResponse> saveCard(@Valid @RequestBody SaveCardRequest model, BindingResult bindingResult) throws Exception {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             throw new Exception();
         }
         DefaultResponse response = new DefaultResponse();

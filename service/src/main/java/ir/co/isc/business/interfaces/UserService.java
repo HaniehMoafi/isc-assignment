@@ -7,5 +7,9 @@ import ir.co.isc.model.UserModel;
 public interface UserService {
 
 
-    UserEntity findUserByNationalCode(String nationalCode)throws UserException;
+    UserEntity findUserByNationalCode(String nationalCode) throws UserException;
+
+    void save(UserModel userModel) throws UserException;
+
+    UserModel findUserDataByNationalCode(String nationalCode) throws UserException;
 }
